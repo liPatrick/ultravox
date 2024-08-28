@@ -1,5 +1,5 @@
 # SLM with ultravox & llama3.1, trained wtih knowledge distillation.
-exp_name: "ultravox-v0_3"
+exp_name: "patrick.2024-08-27-ultravox.support-num-epochs-config.3"
 
 # Make sure to accept the license agreement on huggingface hub
 text_model: "meta-llama/Meta-Llama-3.1-8B-Instruct"
@@ -14,7 +14,9 @@ loss_config:
 val_sets: ["anyinstruct", "soda", "peoplespeech"]
 
 batch_size: 24
-max_steps: 7200 # x8x24 = 1,382,400 samples
+# max_steps: 7200 # x8x24 = 1,382,400 samples
+num_epochs: 1
+
 
 data_sets: []
 data_dicts:
@@ -27,6 +29,7 @@ data_dicts:
     assistant_template: "{{ continuation }}"
     transcript_template: "{{ text }}"
     weight: 1
+    total_samples: 132_553
   - path: "fixie-ai/librispeech_asr"
     name: "other"
     splits:
@@ -35,6 +38,7 @@ data_dicts:
     assistant_template: "{{ continuation }}"
     transcript_template: "{{ text }}"
     weight: 1
+    total_samples: 148_688
   - path: "fixie-ai/common_voice_17_0"
     name: "en"
     splits:
@@ -43,3 +47,4 @@ data_dicts:
     assistant_template: "{{ continuation }}"
     transcript_template: "{{ text_proc.format_asr_text(sentence) }}"
     weight: 8
+    total_samples: 1_101_170
