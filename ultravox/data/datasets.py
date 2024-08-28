@@ -475,7 +475,7 @@ class LibriSpeechDummyDataset(VoiceDataset):
 
 
 class EmptyDataset(SizedIterableDataset):
-    def __init__(self, estimated_length: int) -> None:
+    def __init__(self, estimated_length: int=0) -> None:
         self._estimated_length = estimated_length
         
     
