@@ -15,6 +15,7 @@ val_sets: ["anyinstruct", "soda", "peoplespeech"]
 
 batch_size: 24
 # max_steps: 7200 # x8x24 = 1,382,400 samples
+max_steps: 0
 num_epochs: 1
 
 
