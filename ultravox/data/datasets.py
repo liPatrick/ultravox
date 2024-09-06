@@ -1027,7 +1027,7 @@ class SodaDataset(VoiceDataset):
 
 class GenericVoiceDataset(VoiceDataset):
     def __init__(
-        self, args: VoiceDatasetArgs, config: dataset_config.DataDictConfig
+        self, args: VoiceDatasetArgs, config: dataset_config.DatasetConfig
     ) -> None:
         super().__init__(args)
         dataset = datasets.concatenate_datasets(
@@ -1104,7 +1104,7 @@ def create_dataset(name: str, args: VoiceDatasetArgs) -> SizedIterableDataset:
         "soda": SodaDataset,
         "dummy": LibriSpeechDummyDataset,
     }
-    if isinstance(name, dataset_config.DataDictConfig):
+    if isinstance(name, dataset_config.DatasetConfig):
         return GenericVoiceDataset(args, name)
     else:
         name, *ext = name.split(":")
