@@ -1,5 +1,5 @@
 # SLM with ultravox & llama3.1, trained wtih knowledge distillation.
-exp_name: "ultravox-v0_4"
+exp_name: "patrick.2024-09-07-ultravox.gigaspeech-wenet.1"
 
 # Make sure to accept the license agreement on huggingface hub
 text_model: "meta-llama/Meta-Llama-3.1-8B-Instruct"
@@ -19,6 +19,14 @@ max_steps: 14400 # x8x24 = 2,764,800
 data_sets: ["anyinstruct"]
 data_dicts:
 # continuation
+  - path: "fixie-ai/gigaspeech"
+    name: "xl-empty-audio-removed"
+    splits:
+      - "train" # 8_280_000 samples
+    user_template: "Continue the following text using less than 50 words:\n\n<|audio|>"
+    assistant_template: "{{ continuation }}"
+    transcript_template: "{{ text_proc.format_asr_text(text) }}"
+    weight: 32
   - path: "fixie-ai/librispeech_asr"
     name: "clean"
     splits:
