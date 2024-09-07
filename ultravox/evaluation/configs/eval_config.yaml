@@ -1,4 +1,4 @@
-model: "fixie-ai/ultravox-v0_4"
+model: "wandb://fixie/ultravox/model-zhuang.2024-08-21-ultravox.medium-1j:v5"
 report_logs_to: ["wandb"]
 batch_size: 50
 output_dir: "./output"
