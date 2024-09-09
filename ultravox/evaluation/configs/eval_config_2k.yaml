@@ -1,4 +1,4 @@
-model: "fixie-ai/ultravox-v0_4"
+model: "fixie-ai/patrick.2024-09-07-ultravox.gigaspeech-wenet.1"
 report_logs_to: ["wandb"]
 batch_size: 50
 output_dir: "./output"
