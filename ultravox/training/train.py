@@ -61,6 +61,7 @@ def prepare_dataset(
     interleave = datasets.InterleaveDataset(
         data_sets, stop_strategy=stop_strategy, using_epochs=using_epochs
     )
+    print("interleave length!", len(interleave))
     ds_with_proc = data_processing.UltravoxDataproc(
         interleave,
         processor=processor,
@@ -68,6 +69,8 @@ def prepare_dataset(
         include_alt_fields=include_alt_fields,
     )
     limited_ds = datasets.Range(ds_with_proc, num_samples=num_samples)
+    print("num_samples!", num_samples)
+    print("limited_ds length!", len(limited_ds))
     return limited_ds
 
 
