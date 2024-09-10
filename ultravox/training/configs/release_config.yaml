@@ -17,7 +17,6 @@ batch_size: 24
 max_steps: 0 # x8x24 = 192,000
 num_epochs: 1
 
-data_sets: ["anyinstruct"]
 data_dicts:
 # continuation
   - path: "fixie-ai/gigaspeech"
