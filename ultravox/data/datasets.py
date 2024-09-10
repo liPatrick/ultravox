@@ -302,9 +302,6 @@ class VoiceDataset(SizedIterableDataset):
         self._dataset = dataset
         # Only required when using epochs when training dataset.
         self._estimated_length = estimated_length
-        print("initializing dataset", self._dataset)
-        print("estimated length of dataset", self._estimated_length)
-
 
     @property
     def weight(self) -> float:
@@ -377,7 +374,6 @@ class VoiceDataset(SizedIterableDataset):
             )
 
     def __len__(self) -> int:
-        print("len called", self._estimated_length)
         return self._estimated_length
 
     @abc.abstractmethod
@@ -1036,7 +1032,6 @@ class GenericVoiceDataset(VoiceDataset):
     def __init__(
         self, args: VoiceDatasetArgs, config: dataset_config.DataDictConfig
     ) -> None:
-        print("in generic voice dataset")
         super().__init__(args)
         dataset = datasets.concatenate_datasets(
             [
@@ -1053,11 +1048,6 @@ class GenericVoiceDataset(VoiceDataset):
         # shuffling is only supported on huggingface datasets for now, not MDS
         if self._args.shuffle:
             dataset = dataset.shuffle(seed=self._args.shuffle_seed)
-        print(
-            "in generic voice dataset, with num samples and total samples",
-            config.num_samples,
-            config.total_samples,
-        )
         self._weight = config.weight
 
         self.user_template = config.user_template
@@ -1066,9 +1056,7 @@ class GenericVoiceDataset(VoiceDataset):
 
         if config.num_samples:
             dataset = Range(dataset, config.num_samples, config.total_samples)
-            print("Using Range to limit dataset size", len(dataset))
             super()._init_dataset(dataset, len(dataset))  
-            print("lenght of self", len(self))
         else:
             super()._init_dataset(dataset, config.total_samples)
 
@@ -1120,10 +1108,8 @@ def create_dataset(name: str, args: VoiceDatasetArgs) -> SizedIterableDataset:
         "dummy": LibriSpeechDummyDataset,
     }
     if isinstance(name, dataset_config.DataDictConfig):
-        print("creating generic voice dataset", name)
         return GenericVoiceDataset(args, name)
     else:
-        print("creating specific dataset", name)
         name, *ext = name.split(":")
         return DATASET_MAP[name](args, *ext)
 
