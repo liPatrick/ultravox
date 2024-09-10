@@ -302,7 +302,7 @@ class VoiceDataset(SizedIterableDataset):
         self._dataset = dataset
         # Only required when using epochs when training dataset.
         self._estimated_length = estimated_length
-        print("estimated length of dataset", len(self._estimated_length))
+        print("estimated length of dataset", self._estimated_length)
 
 
     @property
