@@ -1,5 +1,5 @@
 # SLM with ultravox & llama3.1, trained wtih knowledge distillation.
-exp_name: "patrick.2024-09-10-ultravox.weights-test.1"
+exp_name: "patrick.2024-09-10-ultravox.weights-test.2"
 
 # Make sure to accept the license agreement on huggingface hub
 text_model: "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
