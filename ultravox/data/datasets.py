@@ -374,7 +374,8 @@ class VoiceDataset(SizedIterableDataset):
             )
 
     def __len__(self) -> int:
-        return int(self._estimated_length * self._weight)
+        print("len called", self._estimated_length)
+        return self._estimated_length
 
     @abc.abstractmethod
     def _get_sample(self, row: transformers.BatchFeature) -> Optional[VoiceSample]:
@@ -1062,7 +1063,7 @@ class GenericVoiceDataset(VoiceDataset):
         if config.num_samples:
             dataset = Range(dataset, config.num_samples, config.total_samples)
             print("Using Range to limit dataset size", len(dataset))
-            super()._init_dataset(dataset, len(dataset))
+            super()._init_dataset(dataset, len(dataset))  
         else:
             super()._init_dataset(dataset, config.total_samples)
 
