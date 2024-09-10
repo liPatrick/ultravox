@@ -302,6 +302,7 @@ class VoiceDataset(SizedIterableDataset):
         self._dataset = dataset
         # Only required when using epochs when training dataset.
         self._estimated_length = estimated_length
+        print("initalizing dataset", self._dataset)
         print("estimated length of dataset", self._estimated_length)
 
 
@@ -1035,6 +1036,7 @@ class GenericVoiceDataset(VoiceDataset):
     def __init__(
         self, args: VoiceDatasetArgs, config: dataset_config.DataDictConfig
     ) -> None:
+        print("in generic voice dataset")
         super().__init__(args)
         dataset = datasets.concatenate_datasets(
             [
@@ -1066,6 +1068,7 @@ class GenericVoiceDataset(VoiceDataset):
             dataset = Range(dataset, config.num_samples, config.total_samples)
             print("Using Range to limit dataset size", len(dataset))
             super()._init_dataset(dataset, len(dataset))  
+            print("lenght of self", len(self))
         else:
             super()._init_dataset(dataset, config.total_samples)
 
@@ -1117,8 +1120,10 @@ def create_dataset(name: str, args: VoiceDatasetArgs) -> SizedIterableDataset:
         "dummy": LibriSpeechDummyDataset,
     }
     if isinstance(name, dataset_config.DataDictConfig):
+        print("creating generic voice dataset")
         return GenericVoiceDataset(args, name)
     else:
+        print("creating specific dataset")
         name, *ext = name.split(":")
         return DATASET_MAP[name](args, *ext)
 
