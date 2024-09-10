@@ -49,6 +49,7 @@ def prepare_dataset(
     num_samples: Optional[int] = None,
     include_alt_fields: bool = False,  # whether to generate tensors for text-only input (e.g., used for KD training)
 ) -> datasets.SizedIterableDataset:
+    print("dataset_names", dataset_names)
     data_sets = [datasets.create_dataset(ds, data_args) for ds in dataset_names]
     # If we're using epochs to train, validate the dataset length is appropriate.
     using_epochs = train_args.max_steps == 0

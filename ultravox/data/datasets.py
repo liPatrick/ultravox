@@ -302,7 +302,7 @@ class VoiceDataset(SizedIterableDataset):
         self._dataset = dataset
         # Only required when using epochs when training dataset.
         self._estimated_length = estimated_length
-        print("initalizing dataset", self._dataset)
+        print("initializing dataset", self._dataset)
         print("estimated length of dataset", self._estimated_length)
 
 
@@ -1120,10 +1120,10 @@ def create_dataset(name: str, args: VoiceDatasetArgs) -> SizedIterableDataset:
         "dummy": LibriSpeechDummyDataset,
     }
     if isinstance(name, dataset_config.DataDictConfig):
-        print("creating generic voice dataset")
+        print("creating generic voice dataset", name)
         return GenericVoiceDataset(args, name)
     else:
-        print("creating specific dataset")
+        print("creating specific dataset", name)
         name, *ext = name.split(":")
         return DATASET_MAP[name](args, *ext)
 
