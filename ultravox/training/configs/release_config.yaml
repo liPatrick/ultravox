@@ -14,7 +14,8 @@ loss_config:
 val_sets: ["anyinstruct", "soda", "peoplespeech"]
 
 batch_size: 24
-max_steps: 3000 # x8x24 = 192,000
+max_steps: 0 # x8x24 = 192,000
+num_epochs: 1
 
 data_sets: ["anyinstruct"]
 data_dicts:
@@ -26,7 +27,7 @@ data_dicts:
     user_template: "Continue the following text using less than 50 words:\n\n<|audio|>"
     assistant_template: "{{ continuation }}"
     transcript_template: "{{ text_proc.format_asr_text(text) }}"
-    weight: 2
+    weight: 1
     num_samples: 2000 
     total_samples: 8266422
   
