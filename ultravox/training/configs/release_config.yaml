@@ -1,5 +1,5 @@
 # SLM with ultravox & llama3.1, trained wtih knowledge distillation.
-exp_name: "ultravox-v0_4"
+exp_name: "patrick.2024-08-27-ultravox.interleave-test"
 
 # Make sure to accept the license agreement on huggingface hub
 text_model: "meta-llama/Meta-Llama-3.1-8B-Instruct"
