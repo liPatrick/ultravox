@@ -1185,7 +1185,7 @@ class InterleaveDataset(SizedIterableDataset):
         # TODO: Implement the length method for different stop strategies
         return sum(
             int(float(len(ds)) * multiple)
-            for ds, multiple in zip(datasets, self._multipliers)
+            for ds, multiple in zip(self._datasets, self._multipliers)
         )
 
 
